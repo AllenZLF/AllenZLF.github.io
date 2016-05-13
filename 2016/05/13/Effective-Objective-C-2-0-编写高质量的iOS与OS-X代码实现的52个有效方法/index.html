@@ -1,11 +1,90 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>Effective Objective-C 2.0 编写高质量的iOS与OS X代码实现的52个有效方法 | 曾令峰</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="第一章 熟悉Objective-C1 了解Objective-C语言的起源
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ios,Objective-C,Programming Book," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="第一章 熟悉Objective-C1 了解Objective-C语言的起源
 要点
 
 Objective-C为C语言添加了面向对象特性，是其超集。Objective-C使用动态绑定的消息结构，也就是说，在运行时才会检查对象类型。接收一条消息之后，究竟应执行何种代码，由运行期环境而非编译器来决定。
@@ -39,79 +118,201 @@ Objective-C为C语言添加了面向对象特性，是其超集。Objective-C使
 
 
 2 在类的头">
-  
-    <link rel="alternate" href="/atom.xml" title="曾令峰" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> Effective Objective-C 2.0 编写高质量的iOS与OS X代码实现的52个有效方法 | 曾令峰 </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">曾令峰</a>
-      </h1>
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">曾令峰</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
         
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Effective-Objective-C-2-0-编写高质量的iOS与OS-X代码实现的52个有效方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/13/Effective-Objective-C-2-0-编写高质量的iOS与OS-X代码实现的52个有效方法/" class="article-date">
-  <time datetime="2016-05-13T09:46:06.000Z" itemprop="datePublished">2016-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS开发/">iOS开发</a>
-  </div>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Effective Objective-C 2.0 编写高质量的iOS与OS X代码实现的52个有效方法
-    </h1>
+      
+    </ul>
   
 
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Effective Objective-C 2.0 编写高质量的iOS与OS X代码实现的52个有效方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T17:46:06+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">in</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS开发/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS开发</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
       </header>
     
-    <div class="article-entry" itemprop="articleBody">
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <h1 id="第一章-熟悉Objective-C"><a href="#第一章-熟悉Objective-C" class="headerlink" title="第一章 熟悉Objective-C"></a><em>第一章 熟悉Objective-C</em></h1><h2 id="1-了解Objective-C语言的起源"><a href="#1-了解Objective-C语言的起源" class="headerlink" title="1 了解Objective-C语言的起源"></a>1 了解Objective-C语言的起源</h2><blockquote>
 <p>要点</p>
@@ -575,122 +776,284 @@ Objective-C为C语言添加了面向对象特性，是其超集。Objective-C使
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/05/13/Effective-Objective-C-2-0-编写高质量的iOS与OS-X代码实现的52个有效方法/" data-id="cio5joci30000v3usqqq6mmo7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming-Book/">Programming Book</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ios/">ios</a></li></ul>
 
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ios/" rel="tag">#ios</a>
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+            <a href="/tags/Programming-Book/" rel="tag">#Programming Book</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
-  
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-<nav id="article-nav">
-  
-  
-    <a href="/2016/05/13/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
-</nav>
+  </div>
 
-  
-</article>
 
-</section>
+        </div>
         
-          <aside id="sidebar">
+          
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/">iOS开发</a></li></ul>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
     </div>
   </div>
 
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Book/">Programming Book</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ios/">ios</a></li></ul>
-    </div>
-  </div>
+      
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Programming-Book/" style="font-size: 10px;">Programming Book</a> <a href="/tags/ios/" style="font-size: 10px;">ios</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/05/13/Effective-Objective-C-2-0-编写高质量的iOS与OS-X代码实现的52个有效方法/">Effective Objective-C 2.0 编写高质量的iOS与OS X代码实现的52个有效方法</a>
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
           </li>
-        
-          <li>
-            <a href="/2016/05/13/hello-world/">Hello World</a>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
           </li>
-        
-      </ul>
-    </div>
-  </div>
+        </ul>
+      
 
-  
-</aside>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Allen" />
+          <p class="site-author-name" itemprop="name">Allen</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Kategorien</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章-熟悉Objective-C"><span class="nav-number">1.</span> <span class="nav-text">第一章 熟悉Objective-C</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-了解Objective-C语言的起源"><span class="nav-number">1.1.</span> <span class="nav-text">1 了解Objective-C语言的起源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-在类的头文件中尽量少引入其他头文件"><span class="nav-number">1.2.</span> <span class="nav-text">2 在类的头文件中尽量少引入其他头文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-多用字面量语法，少用与之等价的方法"><span class="nav-number">1.3.</span> <span class="nav-text">3 多用字面量语法，少用与之等价的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-多用类型常量，少用-define预处理指令"><span class="nav-number">1.4.</span> <span class="nav-text">4 多用类型常量，少用#define预处理指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-用枚举表示状态、选项、状态码"><span class="nav-number">1.5.</span> <span class="nav-text">5 用枚举表示状态、选项、状态码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-对象、消息、运行期"><span class="nav-number">2.</span> <span class="nav-text">第二章 对象、消息、运行期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-理解“属性”这一概念"><span class="nav-number">2.1.</span> <span class="nav-text">6 理解“属性”这一概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-在对象内部尽量直接访问实例变量"><span class="nav-number">2.2.</span> <span class="nav-text">7 在对象内部尽量直接访问实例变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-理解“对象等同性”这一概念"><span class="nav-number">2.3.</span> <span class="nav-text">8 理解“对象等同性”这一概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-以“类族模式”隐藏实现细节"><span class="nav-number">2.4.</span> <span class="nav-text">9 以“类族模式”隐藏实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-在既有类中使用关联对象存放自定义数据"><span class="nav-number">2.5.</span> <span class="nav-text">10 在既有类中使用关联对象存放自定义数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-理解objc-msgSend的作用"><span class="nav-number">2.6.</span> <span class="nav-text">11 理解objc_msgSend的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-理解消息转发机制"><span class="nav-number">2.7.</span> <span class="nav-text">12 理解消息转发机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-用“方法调配计数”调试“黑盒方法”"><span class="nav-number">2.8.</span> <span class="nav-text">13 用“方法调配计数”调试“黑盒方法”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-理解“类对象”的用意"><span class="nav-number">2.9.</span> <span class="nav-text">14 理解“类对象”的用意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-接口与API设计"><span class="nav-number">3.</span> <span class="nav-text">第三章 接口与API设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#15-用前缀避免命名空间冲突"><span class="nav-number">3.1.</span> <span class="nav-text">15 用前缀避免命名空间冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-提供“全能初始化方法”"><span class="nav-number">3.2.</span> <span class="nav-text">16 提供“全能初始化方法”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-实现description方法"><span class="nav-number">3.3.</span> <span class="nav-text">17 实现description方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-尽量使用不可变对象"><span class="nav-number">3.4.</span> <span class="nav-text">18 尽量使用不可变对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-使用清晰而协调的命名方式"><span class="nav-number">3.5.</span> <span class="nav-text">19 使用清晰而协调的命名方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-为私有方法名加前缀"><span class="nav-number">3.6.</span> <span class="nav-text">20 为私有方法名加前缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#21-理解Objective-C错误模型"><span class="nav-number">3.7.</span> <span class="nav-text">21 理解Objective-C错误模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-理解NSCopying协议"><span class="nav-number">3.8.</span> <span class="nav-text">22 理解NSCopying协议</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第四章-协议与分类"><span class="nav-number">4.</span> <span class="nav-text">第四章 协议与分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#23-通过委托与数据源协议进行对象间通信"><span class="nav-number">4.1.</span> <span class="nav-text">23 通过委托与数据源协议进行对象间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#24-将类的实现代码分散到便于管理的数个分类之中"><span class="nav-number">4.2.</span> <span class="nav-text">24 将类的实现代码分散到便于管理的数个分类之中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-总是在第三方的分类名称加前缀"><span class="nav-number">4.3.</span> <span class="nav-text">25 总是在第三方的分类名称加前缀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-勿在分类中声明属性"><span class="nav-number">4.4.</span> <span class="nav-text">26 勿在分类中声明属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-使用“class-continuation分类”隐藏实现细节"><span class="nav-number">4.5.</span> <span class="nav-text">27 使用“class-continuation分类”隐藏实现细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-通过协议提供匿名对象"><span class="nav-number">4.6.</span> <span class="nav-text">28 通过协议提供匿名对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-理解引用计数"><span class="nav-number">4.7.</span> <span class="nav-text">29 理解引用计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-以ARC简化引用计数"><span class="nav-number">4.8.</span> <span class="nav-text">30 以ARC简化引用计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#31-在dealloc方法中只释放引用并解除监听"><span class="nav-number">4.9.</span> <span class="nav-text">31 在dealloc方法中只释放引用并解除监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-编写“异常安全代码”时留意内存管理问题"><span class="nav-number">4.10.</span> <span class="nav-text">32 编写“异常安全代码”时留意内存管理问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-以弱引用避免保留环"><span class="nav-number">4.11.</span> <span class="nav-text">33 以弱引用避免保留环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-以“自动释放池块”降低内存峰值"><span class="nav-number">4.12.</span> <span class="nav-text">34 以“自动释放池块”降低内存峰值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-用“僵尸对象”调试内存管理问题"><span class="nav-number">4.13.</span> <span class="nav-text">35 用“僵尸对象”调试内存管理问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#36-不要使用retainCount"><span class="nav-number">4.14.</span> <span class="nav-text">36 不要使用retainCount</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-块与大中枢派发"><span class="nav-number">5.</span> <span class="nav-text">第六章 块与大中枢派发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#37-理解”块”这一概念"><span class="nav-number">5.1.</span> <span class="nav-text">37 理解”块”这一概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#38-为常用的块类型创建typedef"><span class="nav-number">5.2.</span> <span class="nav-text">38 为常用的块类型创建typedef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-用handler块降低代码分散程度"><span class="nav-number">5.3.</span> <span class="nav-text">39 用handler块降低代码分散程度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-用块引用其所属对象时不要出现保留环"><span class="nav-number">5.4.</span> <span class="nav-text">40 用块引用其所属对象时不要出现保留环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#41-多用派发队列，少用同步锁"><span class="nav-number">5.5.</span> <span class="nav-text">41 多用派发队列，少用同步锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-多用GCD，少用performSelector系列方法"><span class="nav-number">5.6.</span> <span class="nav-text">42 多用GCD，少用performSelector系列方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#43-掌握GCD及操作队列的使用时机"><span class="nav-number">5.7.</span> <span class="nav-text">43 掌握GCD及操作队列的使用时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#44-通过Dispatch-Group机制，根据系统资源状况来执行任务"><span class="nav-number">5.8.</span> <span class="nav-text">44 通过Dispatch Group机制，根据系统资源状况来执行任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#45-使用dispatch-once-来执行只需运行一次的线程安全代码"><span class="nav-number">5.9.</span> <span class="nav-text">45 使用dispatch_once 来执行只需运行一次的线程安全代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#46-不要使用-dispatch-get-current-queue"><span class="nav-number">5.10.</span> <span class="nav-text">46 不要使用 dispatch_get_current_queue</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第七章-系统框架"><span class="nav-number">6.</span> <span class="nav-text">第七章 系统框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#47-熟悉系统框架"><span class="nav-number">6.1.</span> <span class="nav-text">47 熟悉系统框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#48-多用块枚举，少用for循环"><span class="nav-number">6.2.</span> <span class="nav-text">48 多用块枚举，少用for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#49-对自定义其内存管理语义的collection使用无缝桥接"><span class="nav-number">6.3.</span> <span class="nav-text">49 对自定义其内存管理语义的collection使用无缝桥接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-构建缓存时选用NSCache而非NSDictionary"><span class="nav-number">6.4.</span> <span class="nav-text">50 构建缓存时选用NSCache而非NSDictionary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#51-精简initialize与load的实现代码"><span class="nav-number">6.5.</span> <span class="nav-text">51 精简initialize与load的实现代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#52-别忘了NSTimer会保留其目标对象"><span class="nav-number">6.6.</span> <span class="nav-text">52 别忘了NSTimer会保留其目标对象</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Allen<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Allen</span>
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  </div>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
 </body>
 </html>
