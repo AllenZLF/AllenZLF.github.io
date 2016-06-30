@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/10/Swift中的内存管理/index.html">
 <meta property="og:site_name" content="Allen Zeng">
 <meta property="og:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
-<meta property="og:updated_time" content="2016-06-30T07:08:45.000Z">
+<meta property="og:updated_time" content="2016-06-30T07:10:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的内存管理">
 <meta name="twitter:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
@@ -297,7 +297,6 @@
 <a id="more"></a>
 <h1 id="2-循环引用"><a href="#2-循环引用" class="headerlink" title="2.循环引用"></a>2.循环引用</h1><p>上面解释了一下ARC的运作方式，从中不难看出这种策略的缺陷，就是循环引用问题。object1和object1之间形成了循环引用，它们的引用计数始终为1，始终不会被释放，这就造成了内存泄漏。“标记－整理”策略并不会出现这种问题，因为哪怕两个对象相互引用，但只要它们和“根”对象失去了联系，照样会被标记为死对象，然后在合适的时间被释放。</p>
 <hr>
-<!--more-->
 <h1 id="3-实例分析"><a href="#3-实例分析" class="headerlink" title="3.实例分析"></a>3.实例分析</h1><p>接下来看一个稍微复杂一点的实例，分析一下出现循环引用的原因然后给出解决方法。</p>
 <p>class SimpleRefreshCtrl: UIRefreshControl {   </p>
 <p> typealias Action = () -&gt; ()<br>  var action: Action!<br>   init(action: Action) {    </p>
@@ -363,12 +362,16 @@ func refresh() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/07/iOS开发集成微信支付/" rel="next" title="iOS开发集成微信支付">
+                <i class="fa fa-chevron-left"></i> iOS开发集成微信支付
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/24/以生活例子说明单线程与多线程/" rel="prev" title="一.以生活例子说明单线程与多线程">
-                一.以生活例子说明单线程与多线程 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/24/以生活例子说明单线程与多线程/" rel="prev" title="以生活例子说明单线程与多线程">
+                以生活例子说明单线程与多线程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -437,7 +440,7 @@ func refresh() {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -454,7 +457,7 @@ func refresh() {
           
             <div class="site-state-item site-state-tags">
               <a href="/"tags"">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
