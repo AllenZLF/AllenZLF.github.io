@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/10/Swift中的内存管理/index.html">
 <meta property="og:site_name" content="Allen Zeng">
 <meta property="og:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
-<meta property="og:updated_time" content="2016-06-30T07:10:29.000Z">
+<meta property="og:updated_time" content="2016-06-30T07:56:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift中的内存管理">
 <meta name="twitter:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
@@ -290,11 +290,9 @@
       
 
       
-        <h1 id="1-ARC和GC"><a href="#1-ARC和GC" class="headerlink" title="1.ARC和GC"></a>1.ARC和GC</h1><p>很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从全局对象图的“根”出发进行可达性分析，对象的生死会被批量地标记出来，之后再在某个时间批量地释放死对象。显然，这是一种“全局＋延时”的管理策略。</p>
-<p>而与之相对的，引用计数是一种“局部＋即时”的内存管理策略。它不需要全局的对象信息，一般每个被管理的对象都会跟一个引用计数器关联，这个计数器保存着当前对象被引用的次数，一旦创建一个新的引用指向该对象，引用计数就加1，每当指向该对象的某个引用失效引用计数就减1，直到引用计数为0，就立即释放该对象。使用引用计数法管理内存的语言也不止OC和Swift，还有诸如CPython之类的GC也是基于引用计数的。</p>
+        <h1 id="1-ARC和GC"><a href="#1-ARC和GC" class="headerlink" title="1.ARC和GC"></a>1.ARC和GC</h1><p>很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从全局对象图的“根”出发进行可达性分析，对象的生死会被批量地标记出来，之后再在某个时间批量地释放死对象。显然，这是一种“全局＋延时”的管理策略。<br><a id="more"></a><br>而与之相对的，引用计数是一种“局部＋即时”的内存管理策略。它不需要全局的对象信息，一般每个被管理的对象都会跟一个引用计数器关联，这个计数器保存着当前对象被引用的次数，一旦创建一个新的引用指向该对象，引用计数就加1，每当指向该对象的某个引用失效引用计数就减1，直到引用计数为0，就立即释放该对象。使用引用计数法管理内存的语言也不止OC和Swift，还有诸如CPython之类的GC也是基于引用计数的。</p>
 <p>早年OC是采用MRC（手动引用计数）的，当然其实现在也有人还在用，它跟ARC的主要区别在于它需要手动管理引用计数器，而ARC是自动管理的。所以其实MRC也不能让你直接释放对象的，只是控制引用罢了。</p>
 <hr>
-<a id="more"></a>
 <h1 id="2-循环引用"><a href="#2-循环引用" class="headerlink" title="2.循环引用"></a>2.循环引用</h1><p>上面解释了一下ARC的运作方式，从中不难看出这种策略的缺陷，就是循环引用问题。object1和object1之间形成了循环引用，它们的引用计数始终为1，始终不会被释放，这就造成了内存泄漏。“标记－整理”策略并不会出现这种问题，因为哪怕两个对象相互引用，但只要它们和“根”对象失去了联系，照样会被标记为死对象，然后在合适的时间被释放。</p>
 <hr>
 <h1 id="3-实例分析"><a href="#3-实例分析" class="headerlink" title="3.实例分析"></a>3.实例分析</h1><p>接下来看一个稍微复杂一点的实例，分析一下出现循环引用的原因然后给出解决方法。</p>
@@ -362,8 +360,8 @@ func refresh() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/07/iOS开发集成微信支付/" rel="next" title="iOS开发集成微信支付">
-                <i class="fa fa-chevron-left"></i> iOS开发集成微信支付
+              <a href="/2016/04/22/在Objective-C声明Block的几种方式/" rel="next" title="在Objective-C声明Block的几种方式">
+                <i class="fa fa-chevron-left"></i> 在Objective-C声明Block的几种方式
               </a>
             
           </div>
@@ -440,7 +438,7 @@ func refresh() {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -457,7 +455,7 @@ func refresh() {
           
             <div class="site-state-item site-state-tags">
               <a href="/"tags"">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -414,12 +414,125 @@
 
       
         
-          <h1 id="1-ARC和GC"><a href="#1-ARC和GC" class="headerlink" title="1.ARC和GC"></a>1.ARC和GC</h1><p>很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从全局对象图的“根”出发进行可达性分析，对象的生死会被批量地标记出来，之后再在某个时间批量地释放死对象。显然，这是一种“全局＋延时”的管理策略。</p>
-<p>而与之相对的，引用计数是一种“局部＋即时”的内存管理策略。它不需要全局的对象信息，一般每个被管理的对象都会跟一个引用计数器关联，这个计数器保存着当前对象被引用的次数，一旦创建一个新的引用指向该对象，引用计数就加1，每当指向该对象的某个引用失效引用计数就减1，直到引用计数为0，就立即释放该对象。使用引用计数法管理内存的语言也不止OC和Swift，还有诸如CPython之类的GC也是基于引用计数的。</p>
-<p>早年OC是采用MRC（手动引用计数）的，当然其实现在也有人还在用，它跟ARC的主要区别在于它需要手动管理引用计数器，而ARC是自动管理的。所以其实MRC也不能让你直接释放对象的，只是控制引用罢了。</p>
-<hr>
+          <h1 id="1-ARC和GC"><a href="#1-ARC和GC" class="headerlink" title="1.ARC和GC"></a>1.ARC和GC</h1><p>很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从全局对象图的“根”出发进行可达性分析，对象的生死会被批量地标记出来，之后再在某个时间批量地释放死对象。显然，这是一种“全局＋延时”的管理策略。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/10/Swift中的内存管理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/04/22/在Objective-C声明Block的几种方式/" itemprop="url">
+                  在Objective-C声明Block的几种方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-22T18:14:03+08:00" content="2016-04-22">
+              2016-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-作为局部变量"><a href="#1-作为局部变量" class="headerlink" title="1.作为局部变量"></a>1.作为局部变量</h1><p>returnType (^blockName)(parameterTypes) = ^returnType(parameters) {…};</p>
+<hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/22/在Objective-C声明Block的几种方式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -608,7 +721,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -625,7 +738,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/"tags"">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
