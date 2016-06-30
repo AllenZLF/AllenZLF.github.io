@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="CocoaPods,终端,类库,[object Object],iOS," />
 
 
 
@@ -84,15 +84,22 @@
 
 
 
-<meta name="description" content="脚步跟随心情">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allen Zeng">
-<meta property="og:url" content="http://yoursite.com/tags/iOS/index.html">
+<meta name="description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
+创建Podfile：
+1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于CocoaPods的使用">
+<meta property="og:url" content="http://yoursite.com/2016/03/25/关于CocoaPods的使用/index.html">
 <meta property="og:site_name" content="Allen Zeng">
-<meta property="og:description" content="脚步跟随心情">
+<meta property="og:description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
+创建Podfile：
+1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
+<meta property="og:updated_time" content="2016-06-30T08:06:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allen Zeng">
-<meta name="twitter:description" content="脚步跟随心情">
+<meta name="twitter:title" content="关于CocoaPods的使用">
+<meta name="twitter:description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
+创建Podfile：
+1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
 
 
 
@@ -110,7 +117,7 @@
   };
 </script>
 
-  <title> 标签: iOS | Allen Zeng </title>
+  <title> 关于CocoaPods的使用 | Allen Zeng </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -209,46 +216,151 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        iOS
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于CocoaPods的使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-25T12:00:33+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <h1 id="关于CocoaPods的使用"><a href="#关于CocoaPods的使用" class="headerlink" title="关于CocoaPods的使用"></a>关于CocoaPods的使用</h1><p>前提：电脑上已经安装好CocoaPods。</p>
+<p>创建Podfile：</p>
+<p>1.进入到项目的目录中: $ cd 目录<br>2.使用终端命令行: $ vim Podfile<br>3.然后按i键，进入编辑模式</p>
+<a id="more"></a>
+<p>Podfile的文件格式要使用下面的格式：</p>
+<p>platform :ios,’8.0’use_frameworks!<br>target ‘项目名称’ do<br>  pod ‘AFNetworking’, ‘~&gt; 2.6’<br>  pod ‘<strong>*</strong>‘, ‘~&gt; 3.0’ end</p>
+<p>4.编辑完后按下 esc 键，再按下:键 输入wq 保存。</p>
+<p>导入框架</p>
+<p>使用命令: $ pod install </p>
+<p>执行$ pod install 就都可以了。</p>
+<p>不显示头文件问题解决方式：</p>
+<p>使用cocoapods导入第三方类库后 头文件没有代码提示：</p>
+<p>解决方式：</p>
+<p>选择Target -&gt; Build Settings 菜单，找到\”User Header Search Paths\”设置项<br>新增一个值”${SRCROOT}”，并且选择\”Recursive\”</p>
+<p>CocoaPods常用命令</p>
+<p>1、pod install<br>根据Podfile文件指定的内容，安装依赖库，如果有Podfile.lock文件而且对应的Podfile文件未被修改，则会根据Podfile.lock文件指定的版本安装。</p>
+<p>每次更新了Podfile文件时，都需要重新执行该命令，以便重新安装Pods依赖库。</p>
+<p>2、pod update<br>若果Podfile中指定的依赖库版本不是写死的，当对应的依赖库有了更新，无论有没有Podfile.lock文件都会去获取Podfile文件描述的允许获取到的最新依赖库版本。</p>
+<p>3、pod search 库名<br>查找是否有第三方库, 以及该库的历史版本号。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=33211676&auto=1&height=66"></iframe>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/03/25/关于CocoaPods的使用/" itemprop="url">
-              
-                <span itemprop="name">关于CocoaPods的使用</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-25T12:00:33+08:00"
-              content="2016-03-25" >
-          03-25
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CocoaPods/" rel="tag">#CocoaPods</a>
+          
+            <a href="/tags/终端/" rel="tag">#终端</a>
+          
+            <a href="/tags/类库/" rel="tag">#类库</a>
+          
+            <a href="/tags/object-Object/" rel="tag">#[object Object]</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/13/pch有毒-不要过度使用/" rel="next" title="pch有毒,不要过度使用">
+                <i class="fa fa-chevron-left"></i> pch有毒,不要过度使用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/07/iOS开发集成微信支付/" rel="prev" title="iOS开发集成微信支付">
+                iOS开发集成微信支付 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -256,6 +368,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -275,8 +391,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -326,6 +451,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于CocoaPods的使用"><span class="nav-number">1.</span> <span class="nav-text">关于CocoaPods的使用</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -429,6 +565,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 

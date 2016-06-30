@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ARC,GC," />
+  <meta name="keywords" content="pch,pch优点,pch缺点," />
 
 
 
@@ -84,16 +84,28 @@
 
 
 
-<meta name="description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
+<meta name="description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
+  #import “Test.h” 等同于：
+  #ifndef Test_h#
+  define Test_h
+  #include “Test">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Swift中的内存管理">
-<meta property="og:url" content="http://yoursite.com/2016/05/10/Swift中的内存管理/index.html">
+<meta property="og:title" content="pch有毒,不要过度使用">
+<meta property="og:url" content="http://yoursite.com/2016/03/13/pch有毒-不要过度使用/index.html">
 <meta property="og:site_name" content="Allen Zeng">
-<meta property="og:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
-<meta property="og:updated_time" content="2016-06-30T07:56:41.000Z">
+<meta property="og:description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
+  #import “Test.h” 等同于：
+  #ifndef Test_h#
+  define Test_h
+  #include “Test">
+<meta property="og:updated_time" content="2016-06-30T08:19:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift中的内存管理">
-<meta name="twitter:description" content="1.ARC和GC很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从">
+<meta name="twitter:title" content="pch有毒,不要过度使用">
+<meta name="twitter:description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
+  #import “Test.h” 等同于：
+  #ifndef Test_h#
+  define Test_h
+  #include “Test">
 
 
 
@@ -111,7 +123,7 @@
   };
 </script>
 
-  <title> Swift中的内存管理 | Allen Zeng </title>
+  <title> pch有毒,不要过度使用 | Allen Zeng </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +243,7 @@
             
             
               
-                Swift中的内存管理
+                pch有毒,不要过度使用
               
             
           </h1>
@@ -243,8 +255,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-10T14:56:35+08:00" content="2016-05-10">
-              2016-05-10
+            <time itemprop="dateCreated" datetime="2016-03-13T08:07:48+08:00" content="2016-03-13">
+              2016-03-13
             </time>
           </span>
 
@@ -290,45 +302,32 @@
       
 
       
-        <h1 id="1-ARC和GC"><a href="#1-ARC和GC" class="headerlink" title="1.ARC和GC"></a>1.ARC和GC</h1><p>很多人分不清ARC（Automatic Reference Counting，自动引用计数）跟GC（Garbage Collection，垃圾收集）的区别。其实“引用计数法”也算是一种GC策略，只不过我们现在提到GC的时候一般是指基于“标记－整理”策略的垃圾收集器，譬如主流的JVM（Java虚拟机）几乎都是采用“标记－整理”＋“分代收集”的策略来进行自动内存管理的。标记算法一般是从全局对象图的“根”出发进行可达性分析，对象的生死会被批量地标记出来，之后再在某个时间批量地释放死对象。显然，这是一种“全局＋延时”的管理策略。<br><a id="more"></a><br>而与之相对的，引用计数是一种“局部＋即时”的内存管理策略。它不需要全局的对象信息，一般每个被管理的对象都会跟一个引用计数器关联，这个计数器保存着当前对象被引用的次数，一旦创建一个新的引用指向该对象，引用计数就加1，每当指向该对象的某个引用失效引用计数就减1，直到引用计数为0，就立即释放该对象。使用引用计数法管理内存的语言也不止OC和Swift，还有诸如CPython之类的GC也是基于引用计数的。</p>
-<p>早年OC是采用MRC（手动引用计数）的，当然其实现在也有人还在用，它跟ARC的主要区别在于它需要手动管理引用计数器，而ARC是自动管理的。所以其实MRC也不能让你直接释放对象的，只是控制引用罢了。</p>
-<hr>
-<h1 id="2-循环引用"><a href="#2-循环引用" class="headerlink" title="2.循环引用"></a>2.循环引用</h1><p>上面解释了一下ARC的运作方式，从中不难看出这种策略的缺陷，就是循环引用问题。object1和object1之间形成了循环引用，它们的引用计数始终为1，始终不会被释放，这就造成了内存泄漏。“标记－整理”策略并不会出现这种问题，因为哪怕两个对象相互引用，但只要它们和“根”对象失去了联系，照样会被标记为死对象，然后在合适的时间被释放。</p>
-<hr>
-<h1 id="3-实例分析"><a href="#3-实例分析" class="headerlink" title="3.实例分析"></a>3.实例分析</h1><p>接下来看一个稍微复杂一点的实例，分析一下出现循环引用的原因然后给出解决方法。</p>
-<p>class SimpleRefreshCtrl: UIRefreshControl {   </p>
-<p> typealias Action = () -&gt; ()<br>  var action: Action!<br>   init(action: Action) {    </p>
-<pre><code>   super.init()
-   tintColor = UIColor.navigationBarColor()    
-   self.action = action     
-   self.addTarget(self, action: &quot;refresh&quot;,
-   forControlEvents: UIControlEvents.ValueChanged)
-}
-required init?(coder aDecoder: NSCoder) {
-    fatalError(&quot;init(coder:)has not been implemented&quot;)
-}  
-func refresh() {    
-    self.action()
-    delay(seconds: 1) { 
-       self.endRefreshing()
-    }
-}
-</code></pre><p>}</p>
-<p>这是封装的一个下拉刷新控制器，它继承自UIRefreshControl，可以在UITableViewController中直接使用，如下：</p>
-<p>class HouseTableCtrl: UITableViewController {    //…<br>    func getPageData() {<br>       getListFromApi(urlString){<br>            json, nextLink in<br>            self.houseData = json<br>            self.page = nextLink<br>        }<br>    }<br>    override func viewDidLoad() {<br>      super.viewDidLoad()<br>      let refreshCtrl = SimpleRefreshCtrl</p>
-<p>(action: getPageData)<br>       self.refreshControl = refreshCtrl<br>    }<br>}</p>
-<p>这样，当你下拉列表的时候，旋转的菊花就会出现旋转1秒，同时执行getPageData方法，刷新页面数据。</p>
-<p>但是这里出现了循环引用问题，我们来看看它是怎么发生的。在getPageData方法中我调用了一个全局函数getListFromApi，而这个全局函数需要一个闭包作为参数，而这个闭包又捕获了当前对象的两个属性，也就持有了当前对象的引用。到这里为止并没有什么问题，虽然闭包捕获外部变量从而持有外部对象的引用经常是造成循环引用的一大元凶，但在这里，该闭包是个匿名闭包，我们的HouseTableCtrl对象并没有持有该闭包的引用，所以问题并不是出在这里。</p>
-<p>接下来，在初始化SimpleRefreshCtrl对象的时候，getPageData作为参数被传递了过去，并被赋值给SimpleRefreshCtrl的实例属性action。注意，getPageData是在HouseTableCtrl中定义的一个实例方法，是跟当前的HouseTableCtrl对象关联的，作为参数传递过去的实际上是self.getPageData。如此一来，SimpleRefreshCtrl对象就持有了当前HouseTableCtrl对象的引用。然后接下来这一句self.refreshControl = refreshCtrl，持有HouseTableCtrl对象引用的SimpleRefreshCtrl对象被赋值给了HouseTableCtrl的实例属性refreshControl，于是HouseTableCtrl对象也持有了SimpleRefreshCtrl对象的引用。这就造成了循环引用。</p>
-<p>要如何打破僵局呢，其实也很简单，使用weak或者unowned就行了：</p>
-<p>//refreshCtrl指向的对象只持有当前HouseTableCtrl对象的一个弱引用</p>
-<p>let refreshCtrl = </p>
-<p>SimpleRefreshCtrl {</p>
-<p>  [weak self]in self?.getPageData()</p>
-<p>}<br> //这一句强引用self.refreshControl = refreshCtrl</p>
-<p>这样SimpleRefreshCtrl对象就只是持有当前HouseTableCtrl对象的一个弱引用，弱引用是不算在HouseTableCtrl对象的引用计数中的，也就是说当没有其他引用指向HouseTableCtrl对象时，HouseTableCtrl对象能被正常释放，一旦HouseTableCtrl对象被释放了，那SimpleRefreshCtrl对象也就能被正常释放了。</p>
-<p>至于weak和unowned该用哪个么，看情况了，weak修饰的属性或变量是一个optional类型，也就是说是可以为nil的。而unowned则是修饰一个nonoptional，是不能为nil的，一旦这个属性或变量指向的对象被释放了（这是有可能发生的，因为unowned引用也是不算在引用计数中的，如果除了unowned引用外没有其他引用指向那个对象，那它将被释放），而你还想使用该对象的话，将会触发runtime error，程序也就crash了。所以个人来说，我是更推荐使用weak的。</p>
-
+        <h1 id="1-pch让编译更快"><a href="#1-pch让编译更快" class="headerlink" title="1.pch让编译更快"></a>1.pch让编译更快</h1><p>在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，</p>
+<p>  #import “Test.h” 等同于：</p>
+<p>  #ifndef Test_h#</p>
+<p>  define Test_h</p>
+<p>  #include “Test.h”</p>
+<p>  #endif</p>
+<p>如果你的每个文件都需要引用同一个头文件，如UIKit.h，那么这个文件会被拷贝和编译多次，这会增加build的时间。 节约生命，从减少build时间开始。<br><a id="more"></a><br>预编译头文件，顾名思义，是将头文件事先编译成一种二进制的中间格式。在整个编译过程中，只编译一次，并且会有缓存，如预编译头所涉及的部分不发生改变的话，在随后的编译过程中此部分不会重新进行编译，从而大大提高编译速度。在iOS开发中，我们可以在xxx.pch中定义需要预编译的头文件，在Xcode 6 之前，自动生成的pch如下：</p>
+<pre><code>#ifdef __OBJC__
+#import &lt;Foundation/Foundation.h&gt;
+#import &lt;UIKit/UIKit.h&gt;
+#endif
+</code></pre><hr>
+<h1 id="2-pch的副作用"><a href="#2-pch的副作用" class="headerlink" title="2.pch的副作用"></a>2.pch的副作用</h1><p>加入pch中的头文件，在项目其他地方要使用时，就不需要再import了。这可以算是一种便利，但它也是副作用的源头。切记： pch的目的是提高编译速度，而不是让你少打几行import代码。<br>不利于代码移植 </p>
+<p>如果同一份代码需要在多个项目中使用，过度使用pch会带来麻烦。假设项目A的pch中加了这样一行代码： #import <security security.h=""> ，而你的某个组件使用了Security，将组件代码copy到项目B去可能编译不了，因为项目B的pch并没有添加Security.h</security></p>
+<p>隐式依赖关系 </p>
+<p>本来我们可以通过扫描xxx.h和xxx.m文件，找到xxx所依赖的模块。但是滥用pch会让这些依赖关系被掩盖，因为你的文件可能隐式地依赖了pch中定义的某些头文件。我在另外一篇文章架构设计中的循环引用中提到文件之间不应该循环引用，否则系统将越来越复杂和不可维护。</p>
+<p>有节制地使用pch</p>
+<p>在Xcode 6之后，新建项目已经不会自动生成pch文件了。个人认为原因有两个:<br>因为它的副作用<br>Modules的引入可以更好地替代预编译头</p>
+<p>iOS 7之后，系统的Module都可以被”semantic import”。使用起来很简单，把原来的#import换成@import即可。比如：</p>
+<p> #import <foundation foundation.h=""> 换成 @import Foundation; 即可。</foundation></p>
+<p>编译器遇到 @import 时，会将预编译好的framework载入，同时也不需要到project settings里添加framework，系统会帮你做这些事情。 所有重复性的劳动都应该被自动化。 这些Module只会编译一次，因此已经可以不用pch了。</p>
+<p>不过，pch也并没有完全退出历史舞台。有一些场景还是会使用到，比如你的每个文件都需要用到你定义的一些方法。加入pch的文件应该满足：</p>
+<p>基本大多数文件都会用到</p>
+<p>不应该经常改动，宏定义，常量定义等不应该放在pch里，pch应该只有#import 或者 #include 。</p>
+<p>有节制地用，宁可多敲几行代码，不要偷懒把很多东西都放pch里。</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=289334&auto=1&height=66"></iframe>
       
     </div>
 
@@ -349,9 +348,11 @@ func refresh() {
       
         <div class="post-tags">
           
-            <a href="/tags/ARC/" rel="tag">#ARC</a>
+            <a href="/tags/pch/" rel="tag">#pch</a>
           
-            <a href="/tags/GC/" rel="tag">#GC</a>
+            <a href="/tags/pch优点/" rel="tag">#pch优点</a>
+          
+            <a href="/tags/pch缺点/" rel="tag">#pch缺点</a>
           
         </div>
       
@@ -360,16 +361,12 @@ func refresh() {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/22/在Objective-C声明Block的几种方式/" rel="next" title="在Objective-C声明Block的几种方式">
-                <i class="fa fa-chevron-left"></i> 在Objective-C声明Block的几种方式
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/24/以生活例子说明单线程与多线程/" rel="prev" title="以生活例子说明单线程与多线程">
-                以生活例子说明单线程与多线程 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/03/25/关于CocoaPods的使用/" rel="prev" title="关于CocoaPods的使用">
+                关于CocoaPods的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -484,7 +481,7 @@ func refresh() {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-ARC和GC"><span class="nav-number">1.</span> <span class="nav-text">1.ARC和GC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-循环引用"><span class="nav-number">2.</span> <span class="nav-text">2.循环引用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实例分析"><span class="nav-number">3.</span> <span class="nav-text">3.实例分析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-pch让编译更快"><span class="nav-number">1.</span> <span class="nav-text">1.pch让编译更快</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-pch的副作用"><span class="nav-number">2.</span> <span class="nav-text">2.pch的副作用</span></a></li></ol></div>
             
           </div>
         </section>

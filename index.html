@@ -680,6 +680,225 @@
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/25/关于CocoaPods的使用/" itemprop="url">
+                  关于CocoaPods的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-25T12:00:33+08:00" content="2016-03-25">
+              2016-03-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="关于CocoaPods的使用"><a href="#关于CocoaPods的使用" class="headerlink" title="关于CocoaPods的使用"></a>关于CocoaPods的使用</h1><p>前提：电脑上已经安装好CocoaPods。</p>
+<p>创建Podfile：</p>
+<p>1.进入到项目的目录中: $ cd 目录<br>2.使用终端命令行: $ vim Podfile<br>3.然后按i键，进入编辑模式</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/25/关于CocoaPods的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/03/13/pch有毒-不要过度使用/" itemprop="url">
+                  pch有毒,不要过度使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T08:07:48+08:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="1-pch让编译更快"><a href="#1-pch让编译更快" class="headerlink" title="1.pch让编译更快"></a>1.pch让编译更快</h1><p>在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，</p>
+<p>  #import “Test.h” 等同于：</p>
+<p>  #ifndef Test_h#</p>
+<p>  define Test_h</p>
+<p>  #include “Test.h”</p>
+<p>  #endif</p>
+<p>如果你的每个文件都需要引用同一个头文件，如UIKit.h，那么这个文件会被拷贝和编译多次，这会增加build的时间。 节约生命，从减少build时间开始。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/03/13/pch有毒-不要过度使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
@@ -721,7 +940,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -738,7 +957,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/"tags"">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
