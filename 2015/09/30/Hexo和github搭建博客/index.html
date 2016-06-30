@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Block," />
+  <meta name="keywords" content="hexo,github," />
 
 
 
@@ -84,16 +84,40 @@
 
 
 
-<meta name="description" content="1.作为局部变量returnType (^blockName)(parameterTypes) = ^returnType(parameters) {…};">
+<meta name="description" content="1.配置环境安装Node 作用：用来生成静态页面方法1：
+
+到Node.js官网下载相应平台的最新版本，一路安装即可
+
+方法2：
+
+打开终端 将下面的命令 复制 输入终端中
+先下载Homebrew
+然后执行 brew install nodejs 安装nodejs">
 <meta property="og:type" content="article">
-<meta property="og:title" content="在Objective-C声明Block的几种方式">
-<meta property="og:url" content="http://yoursite.com/2016/04/22/在Objective-C声明Block的几种方式/index.html">
+<meta property="og:title" content="Hexo和github搭建博客">
+<meta property="og:url" content="http://yoursite.com/2015/09/30/Hexo和github搭建博客/index.html">
 <meta property="og:site_name" content="Allen Zeng">
-<meta property="og:description" content="1.作为局部变量returnType (^blockName)(parameterTypes) = ^returnType(parameters) {…};">
-<meta property="og:updated_time" content="2016-06-30T07:57:52.000Z">
+<meta property="og:description" content="1.配置环境安装Node 作用：用来生成静态页面方法1：
+
+到Node.js官网下载相应平台的最新版本，一路安装即可
+
+方法2：
+
+打开终端 将下面的命令 复制 输入终端中
+先下载Homebrew
+然后执行 brew install nodejs 安装nodejs">
+<meta property="og:updated_time" content="2016-06-30T09:16:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Objective-C声明Block的几种方式">
-<meta name="twitter:description" content="1.作为局部变量returnType (^blockName)(parameterTypes) = ^returnType(parameters) {…};">
+<meta name="twitter:title" content="Hexo和github搭建博客">
+<meta name="twitter:description" content="1.配置环境安装Node 作用：用来生成静态页面方法1：
+
+到Node.js官网下载相应平台的最新版本，一路安装即可
+
+方法2：
+
+打开终端 将下面的命令 复制 输入终端中
+先下载Homebrew
+然后执行 brew install nodejs 安装nodejs">
 
 
 
@@ -111,7 +135,7 @@
   };
 </script>
 
-  <title> 在Objective-C声明Block的几种方式 | Allen Zeng </title>
+  <title> Hexo和github搭建博客 | Allen Zeng </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -231,7 +255,7 @@
             
             
               
-                在Objective-C声明Block的几种方式
+                Hexo和github搭建博客
               
             
           </h1>
@@ -243,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-22T18:14:03+08:00" content="2016-04-22">
-              2016-04-22
+            <time itemprop="dateCreated" datetime="2015-09-30T16:58:01+08:00" content="2015-09-30">
+              2015-09-30
             </time>
           </span>
 
@@ -257,8 +281,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
                   </a>
                 </span>
 
@@ -290,16 +314,76 @@
       
 
       
-        <h1 id="1-作为局部变量"><a href="#1-作为局部变量" class="headerlink" title="1.作为局部变量"></a>1.作为局部变量</h1><p>returnType (^blockName)(parameterTypes) = ^returnType(parameters) {…};</p>
+        <h1 id="1-配置环境"><a href="#1-配置环境" class="headerlink" title="1.配置环境"></a>1.配置环境</h1><p>安装Node 作用：用来生成静态页面<br>方法1：</p>
+<ul>
+<li>到Node.js官网下载相应平台的最新版本，一路安装即可</li>
+</ul>
+<p>方法2：</p>
+<ul>
+<li>打开终端 将下面的命令 复制 输入终端中</li>
+<li>先下载Homebrew</li>
+<li>然后执行 brew install nodejs 安装nodejs<a id="more"></a>
+申请Github 作用：是用来做博客的远程仓库、域名、服务器之类的</li>
+</ul>
 <hr>
-<a id="more"></a>
-<h1 id="2-作为类的属性"><a href="#2-作为类的属性" class="headerlink" title="2.作为类的属性"></a>2.作为类的属性</h1><p>@property (nonatomic, copy, nullability) returnType (^blockName)(parameterTypes)</p>
+<h1 id="2-正式安装Hexo"><a href="#2-正式安装Hexo" class="headerlink" title="2.正式安装Hexo"></a>2.正式安装Hexo</h1><p>Node安装好后，先创建一个文件夹，如blog，用来存放hexo的配置文件，然后进入blog里安装Hexo.</p>
+<ul>
+<li>在终端里进入 blog 文件夹 我一般是先输入cd然后把文件夹拖入终端</li>
+<li>执行如下命令安装Hexo</li>
+<li>npm install -g hero-cli 或 npm install -g hexo</li>
+<li>如果出现错误的话可以尝试一下npm install hexo –no-optional 如果还是有一点错误的话，错误不影响正常的博客写作和上传</li>
+<li>然后执行 init命令初始化</li>
+<li>hexo init</li>
+<li>成功后打开文件夹，就可以看到一大堆文件了。这个文件夹就是你的博客的根目录</li>
+</ul>
 <hr>
-<h1 id="3-方法参数"><a href="#3-方法参数" class="headerlink" title="3.方法参数"></a>3.方法参数</h1><p>-(void)someMethodThatTakesABlock:(returnType (^nullability)(parameterTypes))blockName;</p>
+<h1 id="3-配置Github"><a href="#3-配置Github" class="headerlink" title="3.配置Github"></a>3.配置Github</h1><p>建立新的repository, 在个人主页的右边，有一个New repository的绿色按钮，点一下<br>建立与你用户名对应的仓库，仓库名必须为 </p>
+<ul>
+<li>your_user_name.github.io,</li>
+</ul>
+<p>比如我的就是</p>
+<ul>
+<li>allenzlf.github.io</li>
+</ul>
+<p>然后建立关联<br>打开 blog 文件夹下的 _config.yml 文件<br>到最下面，改成下面的样子</p>
+<ul>
+<li><p>deploy:</p>
+<p>   type: git</p>
+<p>   repo: <a href="https://github.com/CoderMoe/codermoe.github.io.git" target="_blank" rel="external">https://github.com/CoderMoe/codermoe.github.io.git</a></p>
+<p>   branch: master</p>
+</li>
+</ul>
+<p>注意：冒号后面有空格， 否则会报错</p>
+<p>然后执行命令：</p>
+<ul>
+<li>npm install hexo-deployer-git –save 用来安装git上传的插件</li>
+</ul>
+<p>再然后就执行： hexo d </p>
+<p>会提示你输入github的用户名和密码<br>注意是github的用户名，不是你的仓库的名字<br>这样博客的基本配置就搭建好了</p>
 <hr>
-<h1 id="4-调用方法是传入的参数"><a href="#4-调用方法是传入的参数" class="headerlink" title="4.调用方法是传入的参数"></a>4.调用方法是传入的参数</h1><p>[someObject someMethodThatTakesABlock:^returnType (parameters) {…}];</p>
-<hr>
-<h1 id="5-自定义Block类型时"><a href="#5-自定义Block类型时" class="headerlink" title="5.自定义Block类型时"></a>5.自定义Block类型时</h1><p>typedef returnType (^TypeName)(parameterTypes);<br>TypeName blockName = ^returnType(parameters) {…};</p>
+<h1 id="4-主要命令-写博客时用到"><a href="#4-主要命令-写博客时用到" class="headerlink" title="4.主要命令,写博客时用到"></a>4.主要命令,写博客时用到</h1><p>生成新的文章<br>    hexo new 文章标题 如果文章标题含有空格使用 hexo new “文章标题”，生成的文章在blog/source/_posts文件夹里</p>
+<p>清空已经生成的静态页面(会删除博客目录下的public文件夹) （有时候如果hexo d上传的时候出现下面的情况，那先hexo clean 再依次执行下面的步骤就会好了）</p>
+<pre><code>hexo clean
+</code></pre><ul>
+<li>On branch master</li>
+<li>nothing to commit, working directory clean</li>
+<li>Everything up-to-date</li>
+</ul>
+<p>生成静态页面（如果没有public文件夹的话，会生成这个文件夹）</p>
+<pre><code>hexo g (全称是 hexo generate)
+</code></pre><p>在本地服务器查看</p>
+<pre><code>hexo s (全称是 hexo server) 然后在浏览器输入 http://localhost:4000
+</code></pre><p>上传到 github</p>
+<pre><code>hexo d (全称是 hexo deploy)
+</code></pre><hr>
+<h1 id="5-主题配置"><a href="#5-主题配置" class="headerlink" title="5.主题配置"></a>5.主题配置</h1><p>这个是按列表展示主题</p>
+<ul>
+<li><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a></li>
+</ul>
+<p>在git里面下载的话会比较好,自我感觉比较方便<br>然后移到博客根目录里的themes文件夹里。将主题文件名复制一下，打开_config.yml，翻到下面找到 theme:将原来的主题名称替换掉。需要注意冒号后面有一个空格 然后在终端输入hexo g就生成静态页面了。</p>
+<p>目前自己所知道的也就这些,大神勿喷</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=416388868&auto=1&height=66"></iframe>
+
 
       
     </div>
@@ -321,7 +405,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Block/" rel="tag">#Block</a>
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
+          
+            <a href="/tags/github/" rel="tag">#github</a>
           
         </div>
       
@@ -330,16 +416,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/07/iOS开发集成微信支付/" rel="next" title="iOS开发集成微信支付">
-                <i class="fa fa-chevron-left"></i> iOS开发集成微信支付
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/10/Swift中的内存管理/" rel="prev" title="Swift中的内存管理">
-                Swift中的内存管理 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/02/11/使用CAShapeLayer与UIBezierPath画出想要的图形/" rel="prev" title="使用CAShapeLayer与UIBezierPath画出想要的图形">
+                使用CAShapeLayer与UIBezierPath画出想要的图形 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -454,7 +536,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-作为局部变量"><span class="nav-number">1.</span> <span class="nav-text">1.作为局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-作为类的属性"><span class="nav-number">2.</span> <span class="nav-text">2.作为类的属性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-方法参数"><span class="nav-number">3.</span> <span class="nav-text">3.方法参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-调用方法是传入的参数"><span class="nav-number">4.</span> <span class="nav-text">4.调用方法是传入的参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-自定义Block类型时"><span class="nav-number">5.</span> <span class="nav-text">5.自定义Block类型时</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-配置环境"><span class="nav-number">1.</span> <span class="nav-text">1.配置环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-正式安装Hexo"><span class="nav-number">2.</span> <span class="nav-text">2.正式安装Hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-配置Github"><span class="nav-number">3.</span> <span class="nav-text">3.配置Github</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-主要命令-写博客时用到"><span class="nav-number">4.</span> <span class="nav-text">4.主要命令,写博客时用到</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-主题配置"><span class="nav-number">5.</span> <span class="nav-text">5.主题配置</span></a></li></ol></div>
             
           </div>
         </section>
