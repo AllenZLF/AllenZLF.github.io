@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CocoaPods,终端,类库,[object Object],iOS," />
+  <meta name="keywords" content="CAShapeLayer,UIBezierPath," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
-创建Podfile：
-1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
+<meta name="description" content="使用CAShapeLayer与UIBezierPath可以实现不在view的drawRect方法中就画出一些想要的图形
+步骤：
+1、新建UIBezierPath对象bezierPath">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于CocoaPods的使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/25/关于CocoaPods的使用/index.html">
+<meta property="og:title" content="使用CAShapeLayer与UIBezierPath画出想要的图形">
+<meta property="og:url" content="http://yoursite.com/2016/02/11/使用CAShapeLayer与UIBezierPath画出想要的图形/index.html">
 <meta property="og:site_name" content="Allen Zeng">
-<meta property="og:description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
-创建Podfile：
-1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
-<meta property="og:updated_time" content="2016-06-30T08:06:22.000Z">
+<meta property="og:description" content="使用CAShapeLayer与UIBezierPath可以实现不在view的drawRect方法中就画出一些想要的图形
+步骤：
+1、新建UIBezierPath对象bezierPath">
+<meta property="og:updated_time" content="2016-06-30T08:53:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于CocoaPods的使用">
-<meta name="twitter:description" content="关于CocoaPods的使用前提：电脑上已经安装好CocoaPods。
-创建Podfile：
-1.进入到项目的目录中: $ cd 目录2.使用终端命令行: $ vim Podfile3.然后按i键，进入编辑模式">
+<meta name="twitter:title" content="使用CAShapeLayer与UIBezierPath画出想要的图形">
+<meta name="twitter:description" content="使用CAShapeLayer与UIBezierPath可以实现不在view的drawRect方法中就画出一些想要的图形
+步骤：
+1、新建UIBezierPath对象bezierPath">
 
 
 
@@ -117,7 +117,7 @@
   };
 </script>
 
-  <title> 关于CocoaPods的使用 | Allen Zeng </title>
+  <title> 使用CAShapeLayer与UIBezierPath画出想要的图形 | Allen Zeng </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -237,7 +237,7 @@
             
             
               
-                关于CocoaPods的使用
+                使用CAShapeLayer与UIBezierPath画出想要的图形
               
             
           </h1>
@@ -249,11 +249,30 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-25T12:00:33+08:00" content="2016-03-25">
-              2016-03-25
+            <time itemprop="dateCreated" datetime="2016-02-11T13:26:36+08:00" content="2016-02-11">
+              2016-02-11
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
@@ -277,26 +296,105 @@
       
 
       
-        <h1 id="关于CocoaPods的使用"><a href="#关于CocoaPods的使用" class="headerlink" title="关于CocoaPods的使用"></a>关于CocoaPods的使用</h1><p>前提：电脑上已经安装好CocoaPods。</p>
-<p>创建Podfile：</p>
-<p>1.进入到项目的目录中: $ cd 目录<br>2.使用终端命令行: $ vim Podfile<br>3.然后按i键，进入编辑模式</p>
+        <p>使用CAShapeLayer与UIBezierPath可以实现不在view的drawRect方法中就画出一些想要的图形</p>
+<p>步骤：</p>
+<p>1、新建UIBezierPath对象bezierPath</p>
 <a id="more"></a>
-<p>Podfile的文件格式要使用下面的格式：</p>
-<p>platform :ios,’8.0’use_frameworks!<br>target ‘项目名称’ do<br>  pod ‘AFNetworking’, ‘~&gt; 2.6’<br>  pod ‘<strong>*</strong>‘, ‘~&gt; 3.0’ end</p>
-<p>4.编辑完后按下 esc 键，再按下:键 输入wq 保存。</p>
-<p>导入框架</p>
-<p>使用命令: $ pod install </p>
-<p>执行$ pod install 就都可以了。</p>
-<p>不显示头文件问题解决方式：</p>
-<p>使用cocoapods导入第三方类库后 头文件没有代码提示：</p>
-<p>解决方式：</p>
-<p>选择Target -&gt; Build Settings 菜单，找到\”User Header Search Paths\”设置项<br>新增一个值”${SRCROOT}”，并且选择\”Recursive\”</p>
-<p>CocoaPods常用命令</p>
-<p>1、pod install<br>根据Podfile文件指定的内容，安装依赖库，如果有Podfile.lock文件而且对应的Podfile文件未被修改，则会根据Podfile.lock文件指定的版本安装。</p>
-<p>每次更新了Podfile文件时，都需要重新执行该命令，以便重新安装Pods依赖库。</p>
-<p>2、pod update<br>若果Podfile中指定的依赖库版本不是写死的，当对应的依赖库有了更新，无论有没有Podfile.lock文件都会去获取Podfile文件描述的允许获取到的最新依赖库版本。</p>
-<p>3、pod search 库名<br>查找是否有第三方库, 以及该库的历史版本号。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=33211676&auto=1&height=66"></iframe>
+<p>2、新建CAShapeLayer对象caShapeLayer</p>
+<p>3、将bezierPath的CGPath赋值给caShapeLayer的path，即caShapeLayer.path = bezierPath.CGPath</p>
+<p>4、把caShapeLayer添加到某个显示该图形的layer中</p>
+<p>下面的小例子是一个环形的progress代码，有具体的使用方法</p>
+<hr>
+<h1 id="h文件："><a href="#h文件：" class="headerlink" title=".h文件："></a>.h文件：</h1><p> #import <quartzcore quartzcore.h="">  </quartzcore></p>
+<p> #import <uikit uikit.h="">  </uikit></p>
+<p>@interface KACircleProgressView : UIView {  </p>
+<pre><code>CAShapeLayer *_trackLayer;  
+UIBezierPath *_trackPath;  
+CAShapeLayer *_progressLayer;  
+UIBezierPath *_progressPath;  
+</code></pre><p>}  </p>
+<p>@property (nonatomic, strong) UIColor <em>trackColor;<br>@property (nonatomic, strong) UIColor </em>progressColor;<br>@property (nonatomic) float progress;//0~1之间的数<br>@property (nonatomic) float progressWidth;  </p>
+<p>-(void)setProgress:(float)progress animated:(BOOL)animated;  </p>
+<p>@end</p>
+<hr>
+<h1 id="m文件"><a href="#m文件" class="headerlink" title=".m文件"></a>.m文件</h1><p>#import “KACircleProgressView.h”  </p>
+<p>@implementation KACircleProgressView  </p>
+<p>-(id)initWithFrame:(CGRect)frame<br>{  </p>
+<pre><code>self = [super initWithFrame:frame];  
+if (self) {  
+
+    // Initialization code  
+    _trackLayer = [CAShapeLayer new];  
+    [self.layer addSublayer:_trackLayer];  
+    _trackLayer.fillColor = nil;  
+    _trackLayer.frame = self.bounds;  
+
+    _progressLayer = [CAShapeLayer new];  
+    [self.layer addSublayer:_progressLayer];  
+    _progressLayer.fillColor = nil;  
+    _progressLayer.lineCap = kCALineCapRound;  
+    _progressLayer.frame = self.bounds;  
+
+    //默认5  
+    self.progressWidth = 5;  
+}  
+return self;  
+</code></pre><p>}  </p>
+<p>-(void)setTrack<br>{  </p>
+<pre><code>_trackPath = [UIBezierPath bezierPathWithArcCenter:self.center radius:(self.bounds.size.width - _progressWidth)/ 2 startAngle:0 endAngle:M_PI * 2 clockwise:YES];;  
+_trackLayer.path = _trackPath.CGPath;  
+</code></pre><p>}  </p>
+<p>-(void)setProgress<br>{  </p>
+<pre><code>_progressPath = [UIBezierPath bezierPathWithArcCenter:self.center radius:(self.bounds.size.width - _progressWidth)/ 2 startAngle:- M_PI_2 endAngle:(M_PI * 2) * _progress - M_PI_2 clockwise:YES];  
+_progressLayer.path = _progressPath.CGPath;  
+</code></pre><p>}  </p>
+<p>-(void)setProgressWidth:(float)progressWidth<br>{  </p>
+<pre><code>_progressWidth = progressWidth;  
+_trackLayer.lineWidth = _progressWidth;  
+_progressLayer.lineWidth = _progressWidth;  
+
+[self setTrack];  
+[self setProgress];  
+</code></pre><p>}  </p>
+<p>-(void)setTrackColor:(UIColor *)trackColor<br>{  </p>
+<pre><code>_trackLayer.strokeColor = trackColor.CGColor;  
+</code></pre><p>}  </p>
+<p>-(void)setProgressColor:(UIColor *)progressColor<br>{  </p>
+<pre><code>_progressLayer.strokeColor = progressColor.CGColor;  
+</code></pre><p>}  </p>
+<p>-(void)setProgress:(float)progress<br>{  </p>
+<pre><code>_progress = progress;  
+
+[self setProgress];  
+</code></pre><p>}  </p>
+<p>-(void)setProgress:(float)progress animated:(BOOL)animated<br>{  </p>
+<p>}  </p>
+<p>/* </p>
+<p>// Only override drawRect: if you perform custom drawing.<br>// An empty implementation adversely affects performance during animation. </p>
+<p>-(void)drawRect:(CGRect)rect<br>{ </p>
+<pre><code>// Drawing code 
+</code></pre><p>} </p>
+<p>*/  </p>
+<p>@end </p>
+<p>使用：</p>
+<p>-(void)viewDidLoad<br>{  </p>
+<pre><code>[super viewDidLoad];  
+// Do any additional setup after loading the view, typically from a nib.  
+KACircleProgressView *progress = [[KACircleProgressView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];  
+[self.view addSubview:progress];  
+progress.trackColor = [UIColor blackColor];  
+progress.progressColor = [UIColor orangeColor];  
+progress.progress = .7;  
+progress.progressWidth = 10;  
+</code></pre><p>}  </p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=28838894&auto=1&height=66"></iframe>
+
+
+
+
+
+
+
       
     </div>
 
@@ -317,15 +415,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/CocoaPods/" rel="tag">#CocoaPods</a>
+            <a href="/tags/CAShapeLayer/" rel="tag">#CAShapeLayer</a>
           
-            <a href="/tags/终端/" rel="tag">#终端</a>
-          
-            <a href="/tags/类库/" rel="tag">#类库</a>
-          
-            <a href="/tags/object-Object/" rel="tag">#[object Object]</a>
-          
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/UIBezierPath/" rel="tag">#UIBezierPath</a>
           
         </div>
       
@@ -334,16 +426,12 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/13/pch有毒-不要过度使用/" rel="next" title="pch有毒,不要过度使用">
-                <i class="fa fa-chevron-left"></i> pch有毒,不要过度使用
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/07/iOS开发集成微信支付/" rel="prev" title="iOS开发集成微信支付">
-                iOS开发集成微信支付 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/02/27/59条搞笑但却真实无比的编程语录/" rel="prev" title="59条搞笑但却真实无比的编程语录">
+                59条搞笑但却真实无比的编程语录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -458,7 +546,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关于CocoaPods的使用"><span class="nav-number">1.</span> <span class="nav-text">关于CocoaPods的使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#h文件："><span class="nav-number">1.</span> <span class="nav-text">.h文件：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#m文件"><span class="nav-number">2.</span> <span class="nav-text">.m文件</span></a></li></ol></div>
             
           </div>
         </section>
