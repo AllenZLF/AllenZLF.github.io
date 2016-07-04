@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="pch,pch优点,pch缺点," />
+  <meta name="keywords" content="CocoaPods,第三方,[object Object],iOS," />
 
 
 
@@ -84,28 +84,19 @@
 
 
 
-<meta name="description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
-  #import “Test.h” 等同于：
-  #ifndef Test_h#
-  define Test_h
-  #include “Test">
+<meta name="description" content="使用了一段时间CocoaPods来管理Objective-c的类库，方便了不少。但是有一个小问题，当我在xcode输入import关键字的时候，没有自动联想补齐代码的功能，需要手工敲全了文件名，难以适应。
+在stackoverflow上找到了解决办法：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pch有毒,不要过度使用">
-<meta property="og:url" content="http://yoursite.com/2016/03/13/pch有毒-不要过度使用/index.html">
+<meta property="og:title" content="CocoaPods导入第三方库头文件自动补齐">
+<meta property="og:url" content="http://yoursite.com/2016/01/27/CocoaPods导入第三方库头文件自动补齐/index.html">
 <meta property="og:site_name" content="Allen Zeng">
-<meta property="og:description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
-  #import “Test.h” 等同于：
-  #ifndef Test_h#
-  define Test_h
-  #include “Test">
-<meta property="og:updated_time" content="2016-06-30T08:19:08.000Z">
+<meta property="og:description" content="使用了一段时间CocoaPods来管理Objective-c的类库，方便了不少。但是有一个小问题，当我在xcode输入import关键字的时候，没有自动联想补齐代码的功能，需要手工敲全了文件名，难以适应。
+在stackoverflow上找到了解决办法：">
+<meta property="og:updated_time" content="2016-07-04T03:53:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pch有毒,不要过度使用">
-<meta name="twitter:description" content="1.pch让编译更快在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，
-  #import “Test.h” 等同于：
-  #ifndef Test_h#
-  define Test_h
-  #include “Test">
+<meta name="twitter:title" content="CocoaPods导入第三方库头文件自动补齐">
+<meta name="twitter:description" content="使用了一段时间CocoaPods来管理Objective-c的类库，方便了不少。但是有一个小问题，当我在xcode输入import关键字的时候，没有自动联想补齐代码的功能，需要手工敲全了文件名，难以适应。
+在stackoverflow上找到了解决办法：">
 
 
 
@@ -123,7 +114,7 @@
   };
 </script>
 
-  <title> pch有毒,不要过度使用 | Allen Zeng </title>
+  <title> CocoaPods导入第三方库头文件自动补齐 | Allen Zeng </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +244,7 @@
             
             
               
-                pch有毒,不要过度使用
+                CocoaPods导入第三方库头文件自动补齐
               
             
           </h1>
@@ -265,30 +256,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-13T08:07:48+08:00" content="2016-03-13">
-              2016-03-13
+            <time itemprop="dateCreated" datetime="2016-01-27T11:50:33+08:00" content="2016-01-27">
+              2016-01-27
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -312,32 +284,15 @@
       
 
       
-        <h1 id="1-pch让编译更快"><a href="#1-pch让编译更快" class="headerlink" title="1.pch让编译更快"></a>1.pch让编译更快</h1><p>在日常的开发中，有很多地方会用到Foundation和UIKit，使用之前需要先将头文件#import进来。与C语言中的#include相似，import会把头文件里的代码copy过来，只不过#import可以避免重复引用。比如，</p>
-<p>  #import “Test.h” 等同于：</p>
-<p>  #ifndef Test_h#</p>
-<p>  define Test_h</p>
-<p>  #include “Test.h”</p>
-<p>  #endif</p>
-<p>如果你的每个文件都需要引用同一个头文件，如UIKit.h，那么这个文件会被拷贝和编译多次，这会增加build的时间。 节约生命，从减少build时间开始。<br><a id="more"></a><br>预编译头文件，顾名思义，是将头文件事先编译成一种二进制的中间格式。在整个编译过程中，只编译一次，并且会有缓存，如预编译头所涉及的部分不发生改变的话，在随后的编译过程中此部分不会重新进行编译，从而大大提高编译速度。在iOS开发中，我们可以在xxx.pch中定义需要预编译的头文件，在Xcode 6 之前，自动生成的pch如下：</p>
-<pre><code>#ifdef __OBJC__
-#import &lt;Foundation/Foundation.h&gt;
-#import &lt;UIKit/UIKit.h&gt;
-#endif
-</code></pre><hr>
-<h1 id="2-pch的副作用"><a href="#2-pch的副作用" class="headerlink" title="2.pch的副作用"></a>2.pch的副作用</h1><p>加入pch中的头文件，在项目其他地方要使用时，就不需要再import了。这可以算是一种便利，但它也是副作用的源头。切记： pch的目的是提高编译速度，而不是让你少打几行import代码。<br>不利于代码移植 </p>
-<p>如果同一份代码需要在多个项目中使用，过度使用pch会带来麻烦。假设项目A的pch中加了这样一行代码： #import <security security.h=""> ，而你的某个组件使用了Security，将组件代码copy到项目B去可能编译不了，因为项目B的pch并没有添加Security.h</security></p>
-<p>隐式依赖关系 </p>
-<p>本来我们可以通过扫描xxx.h和xxx.m文件，找到xxx所依赖的模块。但是滥用pch会让这些依赖关系被掩盖，因为你的文件可能隐式地依赖了pch中定义的某些头文件。我在另外一篇文章架构设计中的循环引用中提到文件之间不应该循环引用，否则系统将越来越复杂和不可维护。</p>
-<p>有节制地使用pch</p>
-<p>在Xcode 6之后，新建项目已经不会自动生成pch文件了。个人认为原因有两个:<br>因为它的副作用<br>Modules的引入可以更好地替代预编译头</p>
-<p>iOS 7之后，系统的Module都可以被”semantic import”。使用起来很简单，把原来的#import换成@import即可。比如：</p>
-<p> #import <foundation foundation.h=""> 换成 @import Foundation; 即可。</foundation></p>
-<p>编译器遇到 @import 时，会将预编译好的framework载入，同时也不需要到project settings里添加framework，系统会帮你做这些事情。 所有重复性的劳动都应该被自动化。 这些Module只会编译一次，因此已经可以不用pch了。</p>
-<p>不过，pch也并没有完全退出历史舞台。有一些场景还是会使用到，比如你的每个文件都需要用到你定义的一些方法。加入pch的文件应该满足：</p>
-<p>基本大多数文件都会用到</p>
-<p>不应该经常改动，宏定义，常量定义等不应该放在pch里，pch应该只有#import 或者 #include 。</p>
-<p>有节制地用，宁可多敲几行代码，不要偷懒把很多东西都放pch里。</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=289334&auto=1&height=66"></iframe>
+        <p>使用了一段时间CocoaPods来管理Objective-c的类库，方便了不少。但是有一个小问题，当我在xcode输入import关键字的时候，没有自动联想补齐代码的功能，需要手工敲全了文件名，难以适应。</p>
+<p>在stackoverflow上找到了解决办法：</p>
+<a id="more"></a>
+<p>Go to the Target &gt; ”Build Settings” tab and find the ”User Header Search Paths” setting.<br>Set this to ”$(BUILT_PRODUCTS_DIR)” and check the ”Recursive” check box.<br>Now the built target will search the workspace’s shared build directory to locate the linkable header files.</p>
+<p>简单说就是这么几步：</p>
+<p>选择Target -&gt; Build Settings 菜单，找到User Header Search Paths设置项</p>
+<p>新增一个值”${SRCROOT}”，并且选择Recursive，这样xcode就会在项目目录中递归搜索文件</p>
+<p>自动补齐功能马上就好使了。</p>
+
       
     </div>
 
@@ -358,11 +313,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/pch/" rel="tag">#pch</a>
+            <a href="/tags/CocoaPods/" rel="tag">#CocoaPods</a>
           
-            <a href="/tags/pch优点/" rel="tag">#pch优点</a>
+            <a href="/tags/第三方/" rel="tag">#第三方</a>
           
-            <a href="/tags/pch缺点/" rel="tag">#pch缺点</a>
+            <a href="/tags/object-Object/" rel="tag">#[object Object]</a>
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
           
         </div>
       
@@ -371,16 +328,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/27/59条搞笑但却真实无比的编程语录/" rel="next" title="59条搞笑但却真实无比的编程语录">
-                <i class="fa fa-chevron-left"></i> 59条搞笑但却真实无比的编程语录
+              <a href="/2015/09/30/Hexo和github搭建博客/" rel="next" title="Hexo和github搭建博客">
+                <i class="fa fa-chevron-left"></i> Hexo和github搭建博客
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/03/25/关于CocoaPods的使用/" rel="prev" title="关于CocoaPods的使用">
-                关于CocoaPods的使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/02/11/使用CAShapeLayer与UIBezierPath画出想要的图形/" rel="prev" title="使用CAShapeLayer与UIBezierPath画出想要的图形">
+                使用CAShapeLayer与UIBezierPath画出想要的图形 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -524,7 +481,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-pch让编译更快"><span class="nav-number">1.</span> <span class="nav-text">1.pch让编译更快</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-pch的副作用"><span class="nav-number">2.</span> <span class="nav-text">2.pch的副作用</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
